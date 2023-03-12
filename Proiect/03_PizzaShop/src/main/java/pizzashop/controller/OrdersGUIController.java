@@ -50,7 +50,7 @@ public class OrdersGUIController {
         return totalAmount;
     }
     public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+        OrdersGUIController.totalAmount = totalAmount;
     }
 
     private PizzaService service;
@@ -58,11 +58,13 @@ public class OrdersGUIController {
 
     public ObservableList<String> observableList;
     private TableView<MenuDataModel> table = new TableView<MenuDataModel>();
-    private ObservableList<MenuDataModel> menuData;// = FXCollections.observableArrayList();
+    private ObservableList<MenuDataModel> menuData;
     private Calendar now = Calendar.getInstance();
     private static double totalAmount;
 
-    public OrdersGUIController(){ }
+    public OrdersGUIController(){
+       //Constructor default
+    }
 
     public void setService(PizzaService service, int tableNumber){
         this.service=service;
@@ -104,7 +106,7 @@ public class OrdersGUIController {
             System.out.println("Total: " + getTotalAmount());
             System.out.println("--------------------------");
             PaymentAlert pay = new PaymentAlert(service);
-            pay.showPaymentAlert(tableNumber, this.getTotalAmount());
+            pay.showPaymentAlert(tableNumber,OrdersGUIController.getTotalAmount());
         });
     }
 
@@ -137,8 +139,9 @@ public class OrdersGUIController {
             orderTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<MenuDataModel>(){
             @Override
             public void changed(ObservableValue<? extends MenuDataModel> observable, MenuDataModel oldValue, MenuDataModel newValue){
-            oldValue.setQuantity(orderQuantity.getValue());
-            orderTable.getSelectionModel().selectedItemProperty().removeListener(this);
+            ///TODO DE REZOLVAT  AICI
+                oldValue.setQuantity(orderQuantity.getValue());
+                orderTable.getSelectionModel().selectedItemProperty().removeListener(this);
                 }
             });
         });

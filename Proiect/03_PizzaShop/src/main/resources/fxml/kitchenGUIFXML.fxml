@@ -11,7 +11,7 @@
 
             </ListView>
 
-            <Button fx:id="cook" minWidth="100" text="Cook" />
-            <Button fx:id="ready" minWidth="100" text="Ready" />
+            <Button fx:id="cookButton" minWidth="100" text="Cook" />
+            <Button fx:id="readyButton" minWidth="100" text="Ready" />
          </children>
  </VBox>
