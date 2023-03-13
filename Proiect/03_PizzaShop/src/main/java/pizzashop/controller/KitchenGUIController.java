@@ -12,16 +12,16 @@ import java.util.Calendar;
 public class KitchenGUIController {
     @FXML
     private ListView kitchenOrdersList;
-    //TODO de schimbat denumirile
-    @FXML
-    public Button cook;
-    @FXML
-    public Button ready;
 
-    public static  ObservableList<String> order = FXCollections.observableArrayList();
+    @FXML
+    public Button cookButton;
+    @FXML
+    public Button readyButton;
+
+    public static final ObservableList<String> order = FXCollections.observableArrayList();
     private Object selectedOrder;
     private Calendar now = Calendar.getInstance();
-    private String extractedTableNumberString = new String();
+    private String extractedTableNumberString = "";
     private int extractedTableNumberInteger;
     //thread for adding data to kitchenOrderList
     public  Thread addOrders = new Thread(new Runnable() {
@@ -48,7 +48,7 @@ public class KitchenGUIController {
         addOrders.setDaemon(true);
         addOrders.start();
         //Controller for Cook Button
-        cook.setOnAction(event -> {
+        cookButton.setOnAction(event -> {
             selectedOrder = kitchenOrdersList.getSelectionModel().getSelectedItem();
             kitchenOrdersList.getItems().remove(selectedOrder);
             kitchenOrdersList.getItems().add(selectedOrder.toString()
@@ -56,9 +56,9 @@ public class KitchenGUIController {
                      .concat(now.get(Calendar.HOUR)+":"+now.get(Calendar.MINUTE)));
         });
         //Controller for Ready Button
-        ready.setOnAction(event -> {
+        readyButton.setOnAction(event -> {
             selectedOrder = kitchenOrdersList.getSelectionModel().getSelectedItem();
-            //TODO
+            //---------------------------------------------------------
             if(selectedOrder!=null) {
                 kitchenOrdersList.getItems().remove(selectedOrder);
                 extractedTableNumberString = selectedOrder.toString().subSequence(5, 6).toString();
