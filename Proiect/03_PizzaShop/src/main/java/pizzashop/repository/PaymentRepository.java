@@ -73,5 +73,10 @@ public class PaymentRepository {
             e.printStackTrace();
         }
     }
+    public void clearPayments(){
+        //ClassLoader classLoader = PaymentRepository.class.getClassLoader();
+       paymentList.clear();
+       writeAll();
+    }
 
 }

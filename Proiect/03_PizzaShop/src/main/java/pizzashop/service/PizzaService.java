@@ -48,4 +48,8 @@ public class PizzaService {
         return total;
     }
 
+    public void emptyPayment(){
+        payRepo.clearPayments();
+    }
+
 }
