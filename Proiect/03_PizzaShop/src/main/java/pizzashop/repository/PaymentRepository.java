@@ -73,6 +73,16 @@ public class PaymentRepository {
             e.printStackTrace();
         }
     }
+
+    public void getEmptyList() {
+        paymentList.clear();
+
+    }
+
+    public void getNullList() {
+        paymentList = null;
+
+    }
     public void clearPayments(){
         //ClassLoader classLoader = PaymentRepository.class.getClassLoader();
        paymentList.clear();

@@ -30,11 +30,20 @@ class PizzaServiceTest {
         @Test
         @DisplayName("Test valid payment when theres no payment")
         void testValidZeroPayments() {
+            pizzaService.getNullList();
+            double total = pizzaService.getTotalAmount(PaymentType.Cash);
+            assert (total == 0.0f);
+        }
+        @Order(2)
+        @Test
+        @DisplayName("Test valid payment when theres no payment")
+        void testValidZeroPayments1() {
+            pizzaService.getEmptyList();
             double total = pizzaService.getTotalAmount(PaymentType.Cash);
             assert (total == 0.0f);
         }
 
-        @Order(2)
+        @Order(3)
         @Test
         @DisplayName("Test valid payment when theres no payment for the wanted type")
         void testValidPaymentNotFound() {
@@ -48,7 +57,7 @@ class PizzaServiceTest {
             assert (total == 0.0);
         }
 
-        @Order(3)
+        @Order(4)
         @Test
         @DisplayName("Test valid payment when theres is payment")
         void testValidPayment() {

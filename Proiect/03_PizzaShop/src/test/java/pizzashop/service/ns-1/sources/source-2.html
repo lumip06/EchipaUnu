@@ -1,0 +1,171 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PizzaService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">pizzashop.service</a>
+</div>
+
+<h1>Coverage Summary for Class: PizzaService (pizzashop.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PizzaService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.7%
+  </span>
+  <span class="absValue">
+    (22/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package pizzashop.service;
+&nbsp;
+&nbsp;import pizzashop.model.MenuDataModel;
+&nbsp;import pizzashop.model.Payment;
+&nbsp;import pizzashop.model.PaymentType;
+&nbsp;import pizzashop.repository.MenuRepository;
+&nbsp;import pizzashop.repository.PaymentRepository;
+&nbsp;import pizzashop.validator.PaymentValidator;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class PizzaService {
+&nbsp;
+&nbsp;    private MenuRepository menuRepo;
+&nbsp;    private PaymentRepository payRepo;
+&nbsp;    private PaymentValidator paymentValidator;
+&nbsp;
+<b class="fc">&nbsp;    public PizzaService(MenuRepository menuRepo, PaymentRepository payRepo, PaymentValidator paymentValidator) {</b>
+<b class="fc">&nbsp;        this.menuRepo = menuRepo;</b>
+<b class="fc">&nbsp;        this.payRepo = payRepo;</b>
+<b class="fc">&nbsp;        this.paymentValidator = paymentValidator;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;MenuDataModel&gt; getMenuData() {
+<b class="nc">&nbsp;        return menuRepo.getMenu();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Payment&gt; getPayments() {
+<b class="fc">&nbsp;        return payRepo.getAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void addPayment(int table, PaymentType type, double amount) {
+<b class="fc">&nbsp;        Payment payment = new Payment(table, type, amount);</b>
+<b class="fc">&nbsp;        if (this.paymentValidator.validatePayment(payment)) {</b>
+<b class="fc">&nbsp;            payRepo.add(payment);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public double getTotalAmount(PaymentType type) {
+&nbsp;        double total;
+<b class="fc">&nbsp;        List&lt;Payment&gt; l = getPayments();</b>
+<b class="fc">&nbsp;        if ((l == null)) {</b>
+<b class="fc">&nbsp;            total = 0.0f;</b>
+<b class="fc">&nbsp;        } else if (l.size() == 0) {</b>
+<b class="fc">&nbsp;            total = 0.0f;</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            total = 0.0f;</b>
+<b class="fc">&nbsp;            for (Payment p : l) {</b>
+<b class="fc">&nbsp;                if (p.getType().equals(type))</b>
+<b class="fc">&nbsp;                    total += p.getAmount();</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return total;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void emptyPayment() {
+<b class="fc">&nbsp;        payRepo.clearPayments();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void getEmptyList() {
+<b class="fc">&nbsp;         payRepo.clearPayments();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void getNullList() {
+<b class="fc">&nbsp;        payRepo.getNullList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-11 17:37</div>
+</div>
+</body>
+</html>
