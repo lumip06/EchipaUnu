@@ -14,18 +14,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 
-class PaymentRepositoryTest {
+public class PaymentRepositoryTest {
 
     private static PaymentRepository paymentRepository;
     private static Payment payment;
 
     @BeforeAll
-    static void setUp() {
+    public static void setUp() {
         paymentRepository = new PaymentRepository();
     }
 
     @BeforeEach
-    void beforeEach() {
+    public void beforeEach() {
         payment = mock(Payment.class);
     }
 

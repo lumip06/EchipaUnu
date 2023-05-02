@@ -12,12 +12,12 @@ import pizzashop.validator.PaymentValidator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-class PizzaServiceTest {
+public class PizzaServiceTest {
 
     private PizzaService pizzaService;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         MenuRepository menuRepo = new MenuRepository();
         PaymentRepository payRepo = new PaymentRepository();
         PaymentValidator paymentValidator = new PaymentValidator();
@@ -25,11 +25,11 @@ class PizzaServiceTest {
     }
     @Nested
     @DisplayName("Tests for getTotalAmount function")
-    class ShowPaymentTests {
+    public class ShowPaymentTests {
         @Order(1)
         @Test
         @DisplayName("Test valid payment when theres no payment")
-        void testValidZeroPayments() {
+        public void testValidZeroPayments() {
             pizzaService.getNullList();
             double total = pizzaService.getTotalAmount(PaymentType.Cash);
             assert (total == 0.0f);
@@ -37,7 +37,7 @@ class PizzaServiceTest {
         @Order(2)
         @Test
         @DisplayName("Test valid payment when theres no payment")
-        void testValidZeroPayments1() {
+        public void testValidZeroPayments1() {
             pizzaService.getEmptyList();
             double total = pizzaService.getTotalAmount(PaymentType.Cash);
             assert (total == 0.0f);
@@ -46,7 +46,7 @@ class PizzaServiceTest {
         @Order(3)
         @Test
         @DisplayName("Test valid payment when theres no payment for the wanted type")
-        void testValidPaymentNotFound() {
+        public void testValidPaymentNotFound() {
             pizzaService.emptyPayment();
             pizzaService.addPayment(4, PaymentType.Card, 20.0);
             pizzaService.addPayment(4, PaymentType.Card, 15.0);
@@ -60,7 +60,7 @@ class PizzaServiceTest {
         @Order(4)
         @Test
         @DisplayName("Test valid payment when theres is payment")
-        void testValidPayment() {
+        public void testValidPayment() {
             pizzaService.emptyPayment();
             pizzaService.addPayment(4, PaymentType.Card, 20.0);
             pizzaService.addPayment(4, PaymentType.Card, 15.0);
@@ -76,18 +76,18 @@ class PizzaServiceTest {
 //
 //    @Nested
 //    @DisplayName("Tests for addPayment function")
-//    class AddPaymentTests {
+//    public class AddPaymentTests {
 //
 //        @Test
 //        @DisplayName("Test valid payment")
-//        void testValidPayment() {
+//        public void testValidPayment() {
 //            assertDoesNotThrow(() -> pizzaService.addPayment(1, PaymentType.Cash, 10.0));
 //        }
 //        @Order(2)
 //        @DisplayName("(╯°□°)╯︵ ┻━┻")
 //        @Tag("fast")
 //        @Test
-//        void ecp1(){
+//        public void ecp1(){
 //        //teste pentru ECP
 //        //toti parametrii sunt corecti
 //            pizzaService.addPayment(4,PaymentType.Cash,20.0);
@@ -101,7 +101,7 @@ class PizzaServiceTest {
 //        @DisplayName("(╯°□°)╯︵ ┻━┻")
 //        @Tag("fast")
 //        @Test
-//    void ecp2(){
+//        public void ecp2(){
 //        //table number este gresit
 //        pizzaService.addPayment(100,PaymentType.Cash,23.3);
 //        List<Payment> payments = pizzaService.getPayments();
@@ -111,7 +111,7 @@ class PizzaServiceTest {
 //        @DisplayName("(╯°□°)╯︵ ┻━┻")
 //        @Tag("fast")
 //        @Test
-//        void ecp3(){
+//        public void ecp3(){
 //            //amount este gresit
 //            pizzaService.addPayment(5,PaymentType.Cash,0);
 //            List<Payment> payments = pizzaService.getPayments();
@@ -122,7 +122,7 @@ class PizzaServiceTest {
 //        @DisplayName("(╯°□°)╯︵ ┻━┻")
 //        @Tag("fast")
 //        @Test
-//        void ecp4(){
+//        public void ecp4(){
 //            //toti parametrii (table si amount) sunt gresiti
 //            pizzaService.addPayment(-100,PaymentType.Cash,-1);
 //            List<Payment> payments = pizzaService.getPayments();
@@ -133,7 +133,7 @@ class PizzaServiceTest {
 //        @DisplayName(" : D")
 //        @ParameterizedTest
 //        @ValueSource(ints = { 1,3,8 })
-//        void bvaTableValide(int candidate){
+//        public void bvaTableValide(int candidate){
 //            ///teste pentru BVA
 //            pizzaService.addPayment(candidate,PaymentType.Cash,10.0);
 //            List<Payment> payments =pizzaService.getPayments();
@@ -147,7 +147,7 @@ class PizzaServiceTest {
 //        @DisplayName("╯°□°）╯")
 //        @ParameterizedTest
 //        @ValueSource(ints = { 0,100 })
-//        void bvaTableInvalide(int candidate){
+//        public void bvaTableInvalide(int candidate){
 //            ///teste pentru BVA
 //            pizzaService.addPayment(candidate,PaymentType.Cash,10.0);
 //            List<Payment> payments =pizzaService.getPayments();
@@ -160,7 +160,7 @@ class PizzaServiceTest {
 //        @DisplayName("> : D")
 //        @ParameterizedTest
 //        @ValueSource(ints = { 0,100 })
-//        void bvaTableamountInvalide(int candidate){
+//        public void bvaTableamountInvalide(int candidate){
 //            ///teste pentru BVA
 //            pizzaService.addPayment(candidate,PaymentType.Cash,0);
 //            List<Payment> payments =pizzaService.getPayments();
@@ -174,7 +174,7 @@ class PizzaServiceTest {
 //        @DisplayName("> : D")
 //        @ParameterizedTest
 //        @ValueSource(ints = { 0,100 })
-//        void bvaTableamountInvalide2(int candidate){
+//        public void bvaTableamountInvalide2(int candidate){
 //            pizzaService.addPayment(candidate,PaymentType.Cash,Double.MAX_VALUE+1);
 //            List<Payment> payments =pizzaService.getPayments();
 //
@@ -187,7 +187,7 @@ class PizzaServiceTest {
 //        @Test
 //        @DisplayName("Test timeout")
 //        @Timeout(1)
-//        void testTimeout() throws InterruptedException {
+//        public void testTimeout() throws InterruptedException {
 //            Thread.sleep(2000);
 //        }
 //
