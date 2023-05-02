@@ -17,12 +17,6 @@ public class PaymentRepository {
         readPayments();
     }
 
-    //for testing only
-    public void init(List<Payment> payments) {
-        this.paymentList = payments;
-        readPayments();
-    }
-
     public void readPayments(){
         //ClassLoader classLoader = PaymentRepository.class.getClassLoader();
         File file = new File(filename);

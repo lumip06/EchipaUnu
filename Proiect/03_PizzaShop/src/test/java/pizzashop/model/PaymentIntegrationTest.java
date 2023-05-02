@@ -1,16 +1,15 @@
-package pizzashop.service;
+package pizzashop.model;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pizzashop.model.Payment;
-import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
+import pizzashop.service.PizzaService;
 import pizzashop.validator.PaymentValidator;
 
-public class PaymentServiceIntegrationTest {
+public class PaymentIntegrationTest {
     private PaymentRepository paymentRepository;
     private PizzaService pizzaService;
     private PaymentValidator validator;
