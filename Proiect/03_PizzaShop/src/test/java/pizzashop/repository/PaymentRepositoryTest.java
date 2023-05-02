@@ -41,11 +41,6 @@ public class PaymentRepositoryTest {
         when(inventory.get(0)).thenReturn(current.get(0));
         paymentRepository.add(part1);
         assertEquals(part1,inventory.get(0));
-
-
-
-
-
     }
 
     @Test
