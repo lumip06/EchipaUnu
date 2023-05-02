@@ -17,7 +17,13 @@ public class PaymentRepository {
         readPayments();
     }
 
-    private void readPayments(){
+    //for testing only
+    public void init(List<Payment> payments) {
+        this.paymentList = payments;
+        readPayments();
+    }
+
+    public void readPayments(){
         //ClassLoader classLoader = PaymentRepository.class.getClassLoader();
         File file = new File(filename);
         BufferedReader br = null;
@@ -29,14 +35,12 @@ public class PaymentRepository {
                 paymentList.add(payment);
             }
             br.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private Payment getPayment(String line){
+    public Payment getPayment(String line){
         Payment item=null;
         if (line==null|| line.equals("")) return null;
         StringTokenizer st=new StringTokenizer(line, ",");
@@ -49,7 +53,7 @@ public class PaymentRepository {
 
     public void add(Payment payment){
         paymentList.add(payment);
-        writeAll();
+        //writeAll();//for testing
     }
 
     public List<Payment> getAll(){
@@ -60,17 +64,19 @@ public class PaymentRepository {
         //ClassLoader classLoader = PaymentRepository.class.getClassLoader();
         File file = new File(filename);
 
-        BufferedWriter bw = null;
-        try {
-            bw = new BufferedWriter(new FileWriter(file));
-            for (Payment p:paymentList) {
-                System.out.println(p.toString());
-                bw.write(p.toString());
-                bw.newLine();
+        if (paymentList.size()!=0) {
+            BufferedWriter bw = null;
+            try {
+                bw = new BufferedWriter(new FileWriter(file));
+                for (Payment p : paymentList) {
+                    System.out.println(p.toString());
+                    bw.write(p.toString());
+                    bw.newLine();
+                }
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
